@@ -20,7 +20,7 @@ import * as Notifications from 'expo-notifications';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../../hooks/useTheme';
 import { useSubscriptionStore } from '../../../store/useSubscriptionStore';
-import { Pedometer } from 'expo-sensors';
+
 
 // Configure notification behavior
 Notifications.setNotificationHandler({
@@ -163,6 +163,8 @@ export default function DashboardScreen() {
   const [initials, setInitials] = useState('?');
   const [userWeight, setUserWeight] = useState(70);
   const [userHeightCm, setUserHeightCm] = useState(170);
+  const [stepSource, setStepSource] = useState<string>('Estimated');
+
 
   // Calendar state
   const [weekDays, setWeekDays] = useState<WeekDay[]>([]);
@@ -261,49 +263,9 @@ export default function DashboardScreen() {
   const sleepHrs = Math.floor(sleepMins / 60);
   const sleepM = sleepMins % 60;
 
-  // --- Step Tracking Logic ---
-  const [isPedometerAvailable, setIsPedometerAvailable] = useState('checking');
-  const lastUpdateRef = useRef<number>(0);
-  const syncTimeoutRef = useRef<any>(null);
+  // --- Step Tracking (Handled by stepService.ts) ---
+  const lastSyncedSteps = useRef<number>(0);
 
-  useEffect(() => {
-    let subscription: { remove: () => void } | null = null;
-    
-    const subscribe = async () => {
-      const isAvailable = await Pedometer.isAvailableAsync();
-      setIsPedometerAvailable(String(isAvailable));
-
-      if (isAvailable) {
-        // Request permissions
-        const { status } = await Pedometer.requestPermissionsAsync();
-        if (status === 'granted') {
-          subscription = Pedometer.watchStepCount(result => {
-            const delta = result.steps - lastUpdateRef.current;
-            if (delta > 0) {
-              // Update local store immediately for UI responsiveness
-              useGoalStore.getState().updateConsumed({ 
-                stepsTaken: useGoalStore.getState().stepsTaken + delta 
-              });
-              lastUpdateRef.current = result.steps;
-
-              // Throttled sync to backend (every 10s or after a pause)
-              if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
-              syncTimeoutRef.current = setTimeout(() => {
-                syncSteps();
-              }, 10000); 
-            }
-          });
-        }
-      }
-    };
-
-    subscribe();
-
-    return () => {
-      subscription?.remove();
-      if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
-    };
-  }, []);
 
   const clockPanResponder = useRef(
     PanResponder.create({
@@ -410,11 +372,13 @@ export default function DashboardScreen() {
 
     // Handle midnight reset specifically in the store as well
     const now = new Date();
-    const tonight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
-    const msUntilMidnight = tonight.getTime() - now.getTime() + 1000;
-    const timeout: any = setTimeout(() => {
-      useGoalStore.getState().midnightReset();
+    const tonight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+    const msUntilMidnight = Math.max(tonight.getTime() - now.getTime(), 1000);
+    const timeout = setTimeout(async () => {
+      await useGoalStore.getState().midnightReset();
+      fetchDayLog(format(new Date(), 'yyyy-MM-dd'));
     }, msUntilMidnight);
+
 
     // Set initial date
     AsyncStorage.setItem(DATE_STORAGE_KEY, format(new Date(), 'yyyy-MM-dd'));
@@ -446,6 +410,29 @@ export default function DashboardScreen() {
       CrashService.log(`👣 Local steps recorded: ${totalToday}`);
     }
   }, [stepsTakenStore]);
+
+  // Sync height and fetch step source
+  useEffect(() => {
+    const { stepService } = require('../../../lib/stepService');
+    stepService.setHeight(userHeightCm);
+
+    const loadStepSource = async () => {
+      const today = format(new Date(), 'yyyy-MM-dd');
+      const stored = await AsyncStorage.getItem(`steps:${today}`);
+      if (stored) {
+        const data = JSON.parse(stored);
+        const sourceMap: any = {
+          'health_connect': 'Via Samsung Health / Health Connect',
+          'healthkit': 'Via Apple Health',
+          'hardware_sensor': 'Via phone sensor',
+          'accelerometer': 'Estimated'
+        };
+        setStepSource(sourceMap[data.source] || 'Estimated');
+      }
+    };
+    loadStepSource();
+  }, [userHeightCm, selectedDate]);
+
 
   const fetchDayLog = useCallback(async (date: string) => {
     CrashService.log(`📅 Viewing dashboard for date: ${date}`);
@@ -513,19 +500,26 @@ export default function DashboardScreen() {
   }, [isOffline, todayDate, calorieGoalStore, caloriesConsumedStore, proteinGoalStore, proteinConsumedStore, fatGoalStore, fatConsumedStore, carbsGoalStore, carbsConsumedStore, waterConsumedStore, waterGoalStore, caloriesBurntStore, stepGoalStore, fadeAnim]);
 
   const syncSteps = useCallback(async () => {
+    const newTotal = stepsTakenStore;
+    
+    // Regression Guard & Optimization: Don't sync if count hasn't increased or matches last sync
+    if (newTotal <= lastSyncedSteps.current) return;
+
     try {
-      const newTotal = stepsTakenStore;
       const response = await api.patch('/api/v1/activity/steps', {
         steps: newTotal,
         date: selectedDate
       });
       if (response.data.success) {
+        lastSyncedSteps.current = newTotal;
         setActivity(response.data.data);
         fetchDayLog(selectedDate);
       }
     } catch (error) {
+      console.error('Step Sync Error:', error);
     }
   }, [stepsTakenStore, selectedDate, fetchDayLog]);
+
 
   const fetchActivityData = useCallback(async (date: string) => {
     try {
@@ -1122,13 +1116,7 @@ export default function DashboardScreen() {
               >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                   <Text style={[styles.cardTitle, { color: colors.text }]}>Steps Tracking</Text>
-                  {isPedometerAvailable !== 'true' && (
-                    <View style={{ backgroundColor: isDark ? '#333' : colors.divider, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 }}>
-                      <Text style={{ fontSize: 10, color: colors.textSecondary, fontWeight: 'bold' }}>
-                        {isPedometerAvailable === 'checking' ? 'Checking Sensor...' : 'Sensor Offline ⚠️'}
-                      </Text>
-                    </View>
-                  )}
+
                 </View>
                 <View style={styles.activityMainRow}>
                   <View style={styles.ringContainer}>
@@ -1139,6 +1127,8 @@ export default function DashboardScreen() {
                     <View style={styles.ringCenterText}>
                       <Text style={[styles.ringStepsVal, { color: colors.text }]}>{stepsTakenStore}</Text>
                       <Text style={[styles.ringStepsLabel, { color: colors.textSecondary }]}>/ {(stepGoalStore || 0).toLocaleString()}</Text>
+                      <Text style={{ fontSize: 10, color: colors.textSecondary, marginTop: 4, fontWeight: '500' }}>{stepSource}</Text>
+
                     </View>
                   </View>
                   <View style={styles.stepStats}>

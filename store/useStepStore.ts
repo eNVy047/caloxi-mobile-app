@@ -12,6 +12,7 @@ interface StepState {
   resetUnsynced: () => void;
   setLastSyncTime: (time: string) => void;
   updateTotalSteps: (steps: number) => void;
+  clear: () => void;
 }
 
 export const useStepStore = create<StepState>()(
@@ -31,7 +32,10 @@ export const useStepStore = create<StepState>()(
       setLastSyncTime: (time) => set({ lastSyncTime: time }),
 
       updateTotalSteps: (steps) => set({ currentSteps: steps }),
+
+      clear: () => set({ currentSteps: 0, unsyncedSteps: 0, lastSyncTime: null }),
     }),
+
     {
       name: 'step-storage',
       storage: createJSONStorage(() => AsyncStorage),

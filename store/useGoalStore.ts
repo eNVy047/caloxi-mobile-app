@@ -116,8 +116,16 @@ export const useGoalStore = create<GoalStore>()(
         set((state) => ({ ...state, ...goals }));
       },
 
-      midnightReset: () => {
+      midnightReset: async () => {
         const today = format(new Date(), 'yyyy-MM-dd');
+        
+        // Clear local step storage
+        try {
+          await AsyncStorage.removeItem('caloxi_local_steps_count');
+          const { useStepStore } = require('./useStepStore');
+          useStepStore.getState().clear();
+        } catch (e) {}
+
         set({
           caloriesConsumed: 0,
           proteinConsumed: 0,
@@ -129,6 +137,7 @@ export const useGoalStore = create<GoalStore>()(
           lastSyncDate: today,
         });
       },
+
 
       addToQueue: (request) => {
         const id = Math.random().toString(36).substring(7);
