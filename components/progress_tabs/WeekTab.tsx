@@ -89,7 +89,7 @@ export default function WeekTab({ data, goals }: any) {
         </View>
         <View>
           <Text style={[styles.streakTitle, { color: colors.text }]}>{summary.currentStreak || 0} Day Streak!</Text>
-          <Text style={[styles.streakSub, { color: colors.textSecondary }]}>You're on fire! Keep hitting those goals.</Text>
+          <Text style={[styles.streakSub, { color: colors.textSecondary }]}>You&apos;re on fire! Keep hitting those goals.</Text>
         </View>
       </View>
 

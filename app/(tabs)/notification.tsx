@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, FlatList,
   ActivityIndicator, RefreshControl, Platform, Alert, Animated,
@@ -7,12 +7,11 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { api } from '../../lib/api';
-import { formatDistanceToNow, isToday, isYesterday, isThisWeek, parseISO } from 'date-fns';
+import { formatDistanceToNow, isToday, isYesterday, parseISO } from 'date-fns';
 import { useTheme } from '../../hooks/useTheme';
 import { useNotifications } from '../../context/NotificationContext';
 import { Swipeable } from 'react-native-gesture-handler';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface Notification {
   _id: string;

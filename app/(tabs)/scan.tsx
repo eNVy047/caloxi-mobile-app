@@ -19,7 +19,7 @@ import {
 import { Image } from 'expo-image';
 import { CameraView, useCameraPermissions, FlashMode } from 'expo-camera';
 import { useRouter, Stack } from 'expo-router';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Svg, { Path } from 'react-native-svg';
 import { BlurView } from 'expo-blur';
@@ -66,7 +66,7 @@ const IngredientCard = ({ name }: { name: string }) => {
 export default function ScanScreen() {
   const { colors, isDark } = useTheme();
   const { isPro, scansUsedToday, checkScanLimit, trialUsed } = useSubscriptionStore();
-  const { user, refreshUser } = useAuth();
+  const { refreshUser } = useAuth();
   const router = useRouter();
   const store = useGoalStore();
 
@@ -415,7 +415,7 @@ export default function ScanScreen() {
                   </View>
                   <Text style={[styles.lockedTitle, { color: colors.text }]}>Daily Limit Reached</Text>
                   <Text style={[styles.lockedSubtitle, { color: colors.textSecondary }]}>
-                    You've used your 1 free scan for today. Upgrade to PRO for unlimited AI scans and advanced analytics.
+                    You&apos;ve used your 1 free scan for today. Upgrade to PRO for unlimited AI scans and advanced analytics.
                   </Text>
                   
                   {!trialUsed ? (

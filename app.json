@@ -12,7 +12,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.envy47.caloxi",
-      "buildNumber": "1",
+      "buildNumber": "12",
       "jsEngine": "hermes",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -29,7 +29,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.envy47.caloxi",
-      "versionCode": 1,
+      "versionCode": 12,
       "jsEngine": "hermes",
       "googleServicesFile": "./google-services.json"
     },
@@ -54,7 +54,21 @@
       "@react-native-community/datetimepicker",
       "expo-background-task",
       "expo-notifications",
-      "expo-health-connect"
+      "expo-health-connect",
+      "react-native-health-connect",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "kotlinVersion": "2.1.21"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

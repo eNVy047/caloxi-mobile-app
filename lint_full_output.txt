@@ -1,0 +1,150 @@
+
+> caloxi@1.0.0 lint
+> expo lint
+
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(auth)/forgot-password.tsx
+   1:27  warning  'useEffect' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+  11:3   warning  'Alert' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+  18:27  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  22:32  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(auth)/setup.tsx
+  14:27  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  15:8   warning  'AsyncStorage' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+  19:32  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  20:10  warning  'StatusBar' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+  22:9   warning  'width' is assigned a value but never used                                                                     @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(auth)/sign-in.tsx
+   1:27  warning  'useEffect' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+  18:27  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  19:8   warning  'AsyncStorage' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+  24:32  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(auth)/sign-up.tsx
+   1:27  warning  'useEffect' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+  18:27  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  21:10  warning  'useAuth' is defined but never used                                                                            @typescript-eslint/no-unused-vars
+  24:32  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/(dashboard)/index.tsx
+  151:9   warning  'caloriesRemaining' is assigned a value but never used                                                                                                                         @typescript-eslint/no-unused-vars
+  152:9   warning  'waterRemaining' is assigned a value but never used                                                                                                                            @typescript-eslint/no-unused-vars
+  155:19  warning  'theme' is assigned a value but never used                                                                                                                                     @typescript-eslint/no-unused-vars
+  203:11  warning  'category' is assigned a value but never used                                                                                                                                  @typescript-eslint/no-unused-vars
+  216:14  warning  'error' is defined but never used                                                                                                                                              @typescript-eslint/no-unused-vars
+  306:6   warning  React Hook useEffect has a missing dependency: 'syncSteps'. Either include it or remove the dependency array                                                                   react-hooks/exhaustive-deps
+  386:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  426:6   warning  React Hook useEffect has missing dependencies: 'fetchDayLog' and 'fetchWeekLogs'. Either include them or remove the dependency array                                           react-hooks/exhaustive-deps
+  430:6   warning  React Hook useEffect has a missing dependency: 'fetchRoutines'. Either include it or remove the dependency array                                                               react-hooks/exhaustive-deps
+  439:8   warning  React Hook useCallback has missing dependencies: 'fetchActivityData', 'fetchDayLog', 'fetchRoutines', and 'fetchWeekLogs'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  503:18  warning  'error' is defined but never used                                                                                                                                              @typescript-eslint/no-unused-vars
+  510:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  526:14  warning  'error' is defined but never used                                                                                                                                              @typescript-eslint/no-unused-vars
+  536:14  warning  'error' is defined but never used                                                                                                                                              @typescript-eslint/no-unused-vars
+  547:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  557:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  564:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  627:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  654:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  668:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  687:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  701:14  warning  '_' is defined but never used                                                                                                                                                  @typescript-eslint/no-unused-vars
+  765:11  warning  'fatOffset' is assigned a value but never used                                                                                                                                 @typescript-eslint/no-unused-vars
+  766:11  warning  'proOffset' is assigned a value but never used                                                                                                                                 @typescript-eslint/no-unused-vars
+  767:11  warning  'carbOffset' is assigned a value but never used                                                                                                                                @typescript-eslint/no-unused-vars
+  848:9   warning  'stepGoal' is assigned a value but never used                                                                                                                                  @typescript-eslint/no-unused-vars
+  849:9   warning  'stepLengthMeters' is assigned a value but never used                                                                                                                          @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/(dashboard)/profile.tsx
+   68:29  warning  'startTrial' is assigned a value but never used                                                                    @typescript-eslint/no-unused-vars
+  109:14  warning  'err' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  139:8   warning  React Hook useCallback has a missing dependency: 'fetchProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  180:14  warning  'err' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  237:14  warning  'err' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  264:22  warning  'err' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/(dashboard)/progress.tsx
+   30:9   warning  'width' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   50:9   warning  'router' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  148:14  warning  'error' is defined but never used            @typescript-eslint/no-unused-vars
+  176:14  warning  'error' is defined but never used            @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/chat.tsx
+   15:3   warning  'Share' is defined but never used                                                                                              @typescript-eslint/no-unused-vars
+   18:8   warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/react-native/index.js' imported multiple times                       import/no-duplicates
+   21:30  warning  '/Users/narayanverma/Documents/caloxi/caloxi/node_modules/react-native/index.js' imported multiple times                       import/no-duplicates
+   57:6   warning  React Hook useEffect has missing dependencies: 'fadeAnim' and 'slideAnim'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  100:11  warning  'user' is assigned a value but never used                                                                                      @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/notification.tsx
+   1:47  warning  'useRef' is defined but never used                 @typescript-eslint/no-unused-vars
+  10:53  warning  'isThisWeek' is defined but never used             @typescript-eslint/no-unused-vars
+  15:16  warning  'SCREEN_WIDTH' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  61:14  warning  'error' is defined but never used                  @typescript-eslint/no-unused-vars
+  74:14  warning  'error' is defined but never used                  @typescript-eslint/no-unused-vars
+  85:14  warning  'error' is defined but never used                  @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/(tabs)/scan.tsx
+   22:20  warning  'MaterialCommunityIcons' is defined but never used                                                                   @typescript-eslint/no-unused-vars
+   69:11  warning  'user' is assigned a value but never used                                                                            @typescript-eslint/no-unused-vars
+  121:6   warning  React Hook useEffect has a missing dependency: 'refreshUser'. Either include it or remove the dependency array       react-hooks/exhaustive-deps
+  227:6   warning  React Hook useCallback has a missing dependency: 'refreshUser'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  262:16  warning  'e' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+  265:6   warning  React Hook useCallback has a missing dependency: 'checkScanLimit'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  287:6   warning  React Hook useCallback has a missing dependency: 'checkScanLimit'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  315:7   warning  Expected an assignment or function call and instead saw an expression                                                no-unused-expressions
+  316:14  warning  'error' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  359:7   warning  Expected an assignment or function call and instead saw an expression                                                no-unused-expressions
+  360:14  warning  'error' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  418:24  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                      react/no-unescaped-entities
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/_layout.tsx
+  13:10  warning  'isExpoGo' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  44:11  warning  'isOffline' is assigned a value but never used                                                                   @typescript-eslint/no-unused-vars
+  80:31  warning  A `require()` style import is forbidden                                                                          @typescript-eslint/no-require-imports
+  87:16  warning  'error' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  91:6   warning  React Hook React.useEffect has a missing dependency: 'isDark'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/narayanverma/Documents/caloxi/caloxi/app/paywall.tsx
+  21:9   warning  'width' is assigned a value but never used                @typescript-eslint/no-unused-vars
+  21:16  warning  'height' is assigned a value but never used               @typescript-eslint/no-unused-vars
+  29:43  warning  'subscriptionLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  50:14  warning  'error' is defined but never used                         @typescript-eslint/no-unused-vars
+  93:14  warning  'error' is defined but never used                         @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/CustomTabBar.tsx
+    2:16  warning  'Text' is defined but never used                                                                                                                @typescript-eslint/no-unused-vars
+    2:52  warning  'Platform' is defined but never used                                                                                                            @typescript-eslint/no-unused-vars
+   13:9   warning  'router' is assigned a value but never used                                                                                                     @typescript-eslint/no-unused-vars
+  136:6   warning  React Hook useEffect has missing dependencies: 'opacityAnim', 'scaleAnim', and 'widthAnim'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/OfflineBanner.tsx
+   2:10  warning  'View' is defined but never used                                                                                     @typescript-eslint/no-unused-vars
+  20:6   warning  React Hook React.useEffect has a missing dependency: 'translateY'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/PaywallPopup.tsx
+  19:9   warning  'width' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  74:14  warning  'error' is defined but never used           @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/progress_tabs/MonthTab.tsx
+    6:10  warning  'LinearGradient' is defined but never used   @typescript-eslint/no-unused-vars
+  193:19  warning  'isDark' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/progress_tabs/TodayTab.tsx
+    2:46  warning  'ScrollView' is defined but never used                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   11:3   warning  'interpolate' is defined but never used                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   42:6   warning  React Hook useEffect has missing dependencies: 'animatedProgress' and 'index'. Either include them or remove the dependency array                                                                                                          react-hooks/exhaustive-deps
+   90:6   warning  React Hook useEffect has missing dependencies: 'index', 'opacity', and 'translateY'. Either include them or remove the dependency array                                                                                                    react-hooks/exhaustive-deps
+  126:9   warning  The 'latestLog' logical expression could make the dependencies of useMemo Hook (at line 134) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'latestLog' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/progress_tabs/WeekTab.tsx
+  92:80  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/narayanverma/Documents/caloxi/caloxi/components/progress_tabs/YearTab.tsx
+  175:19  warning  'isDark' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 104 problems (2 errors, 102 warnings)
+  0 errors and 5 warnings potentially fixable with the `--fix` option.
+

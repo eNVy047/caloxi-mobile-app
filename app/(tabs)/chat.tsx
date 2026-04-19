@@ -12,13 +12,13 @@ import {
   StatusBar,
   ScrollView,
   Animated,
-  Share,
   Keyboard,
+  Alert,
+  Modal,
   Dimensions
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { Alert, Modal } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../../context/AuthContext';
 import { useSubscriptionStore } from '../../store/useSubscriptionStore';
